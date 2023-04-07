@@ -44,8 +44,8 @@ cdef extern from 'vendor/duktape.c':
     ctypedef void* (*duk_realloc_function) (void *udata, void *ptr, duk_size_t size)
     ctypedef void (*duk_free_function) (void *udata, void *ptr)
     ctypedef void (*duk_fatal_function) (duk_context *ctx, duk_errcode_t code, const char *msg)
-    ctypedef duk_ret_t (*duk_c_function)(duk_context *ctx)
-    ctypedef duk_ret_t (*duk_safe_call_function) (duk_context *ctx)
+    ctypedef duk_ret_t (*duk_c_function)(duk_context *ctx) except? -1
+    ctypedef duk_ret_t (*duk_safe_call_function) (duk_context *ctx) except? -1
 
     cdef duk_context* duk_create_heap(duk_alloc_function alloc_func, duk_realloc_function realloc_func, duk_free_function free_func, void *heap_udata, duk_fatal_function fatal_handler)
     cdef duk_context* duk_create_heap_default()
